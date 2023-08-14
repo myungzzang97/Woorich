@@ -56,13 +56,3 @@ def logout():
     session.clear()
     return redirect(url_for('main.index'))
 
-@bp.route('/delete-account', methods=['GET', 'POST'])
-#@login_required
-@load_logged_in_user
-def delete_account():
-    if request.method == 'POST':
-        current_user.delete()
-        logout()
-        flash('계정이 성공적으로 삭제되었습니다.')
-        return redirect(url_for('login.index'))
-    return render_template('delete_account.html')
